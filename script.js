@@ -25,14 +25,17 @@ function start(){
         })
     });
 }
-start();
 
 function restart(){
     box.forEach(element => {
         console.log(element.classList)
-        element.classList = 'box';
+        element.className = 'box';
     });
-    return;
+    const outDiv = document.querySelector('.outDiv');
+    if (outDiv) {
+        outDiv.remove(); // Remove the winning/draw message
+    }
+   
 }
 
 function check(){
@@ -96,29 +99,33 @@ function check(){
 }
 
 function crossWin(){
-    body.innerHTML = body.innerHTML +  `<div class="outDiv">  <h3>Cross Wins Try Playing New Game</h3></div>
-    <button>Restart</button>` ;
-    return;
+    document.body.insertAdjacentHTML('afterbegin', `
+        <div class="outDiv"> 
+            <h3>Cross Wins! Try Playing a New Game</h3>
+        </div>
+    `);
 }
 
 function circleWin(){
-    document.body.innerHTML += `<div class="outDiv"> <h3>circle Wins Try Playing New Game</h3></div>
-    <button>Restart</button>` ;
-    return;
+    document.body.insertAdjacentHTML('afterbegin', `
+        <div class="outDiv"> 
+            <h3>Circle Wins! Try Playing a New Game</h3>
+        </div>
+    `);
 }
 
 function draw(){
-    document.body.innerHTML += `<div class="outDiv"> <h3>Match draw Try Playing New Game</h3></div>
-    <button>Restart</button>` ;
-    return;
+    document.body.insertAdjacentHTML('afterbegin', `
+        <div class="outDiv"> 
+            <h3>Match Draw! Try Playing a New Game</h3>
+        </div>
+    `);
 }
 
 const button  = document.querySelector('button');
 button.addEventListener('click',()=>{
-    restart();
     count = 0;
+    restart();
 })
 
-button.addEventListener('click',()=>{
-    
-});
+start();
